@@ -1,0 +1,23 @@
+version: '3'
+services:
+  demo-1:
+    build: ./demo-1
+    container_name: dind-demo-1
+    volumes:
+      - backup-volume:/usr/backup
+
+  demo-2:
+    build: ./demo-2
+    container_name: dind-demo-2
+    volumes:
+      - backup-volume:/usr/backup
+
+  backup:
+    build: ./backup
+    privileged: true
+    volumes:
+      - backup-volume:/usr/backup
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+volumes:
+  backup-volume:
