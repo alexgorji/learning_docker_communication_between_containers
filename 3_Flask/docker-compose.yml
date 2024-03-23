@@ -1,0 +1,28 @@
+version: '3'
+services:
+  demo-1:
+    build: ./demo-1
+    container_name: flask-demo-1
+    environment:
+      - PORT=5001
+    volumes:
+      - backup-volume:/usr/backup
+    command: ["python", "app.py"]
+
+  demo-2:
+    build: ./demo-2
+    container_name: flask-demo-2
+    environment:
+      - PORT=5002
+    volumes:
+      - backup-volume:/usr/backup
+    command: ["python", "app.py"]
+
+
+  backup:
+    build: ./backup
+    volumes:
+      - backup-volume:/usr/backup
+
+volumes:
+  backup-volume:
