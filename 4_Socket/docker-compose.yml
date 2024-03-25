@@ -1,0 +1,29 @@
+version: '3'
+services:
+  demo-1:
+    build: ./demo-1
+    container_name: socket-demo-1
+    environment:
+      - SOCKET_PORT=9991
+    volumes:
+      - backup-volume:/usr/backup
+
+  demo-2:
+    build: ./demo-2
+    container_name: socket-demo-2
+    environment:
+      - SOCKET_PORT=9991
+    volumes:
+      - backup-volume:/usr/backup
+
+  backup:
+    build: ./backup
+    volumes:
+      - backup-volume:/usr/backup
+    depends_on:
+      - demo-1
+      - demo-2
+    command: sh -c "python3 ipc-client.py socket-demo-1 9991 create_backup && python3 ipc-client.py socket-demo-2 9991 create_backup"
+
+volumes:
+  backup-volume:

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  demo-1:
+    build: ./demo-1
+    container_name: echo-socket-demo-1
+    environment:
+      - SOCKET_PORT=9991
+
+  demo-2:
+    build: ./demo-2
+    container_name: echo-socket-demo-2
+    environment:
+      - SOCKET_PORT=9991
+
+  backup:
+    build: ./backup
