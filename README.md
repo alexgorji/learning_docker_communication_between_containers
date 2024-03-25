@@ -2,7 +2,7 @@ This is a learning project to experiment with different approaches of container 
 
 Compose: The host uses docker compose exec to manage the communication.
 
-DinD: One container (backup) uses Docker within Docker principle to use docker exec commands on the other containers (demo-1 and demo-2).
+DinD: One container (backup) uses Docker within Docker principle (which is to be exact actually a Docker out of Docker, DooD) to use docker exec commands on the other containers (demo-1 and demo-2).
 
 Flask: Two containers (demo-1 and demo-2) use Flask and exposes a port for communicating with it via http protocol. 
 
@@ -31,12 +31,11 @@ Three containers `demo-1`, `demo-2`, `backup`
 
 ├── backup
 |   ├── clean-backup.sh
-|   ├── demo-1-copy-to-backup.sh
-|   ├── demo-2-copy-to-backup.sh
+
 ```
 All containers share a backup volume
 
-The copying process will be delayed for 2 seconds in order to simulate possible costly complications.
+The copying process will be delayed for 2 or 3 seconds in order to simulate possible costly complications.
 
 Each step in script files echos its start and end point.
 
